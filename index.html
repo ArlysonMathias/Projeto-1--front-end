@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/fe5206eafd.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>Projeto 1</title>
+  </head>
+  <body>
+    <header>
+      <div class="header-titulo">
+        <h1>To-do-List</h1>
+      </div>
+
+      <nav class="nav-header">
+        <!-- <ul>
+          <li><a href=""></a> Home</li>
+        </ul> -->
+        <div class="nav-pesquisar">
+          <input
+            id="pesquisar-id"
+            type="number"
+            placeholder="Pesquisar por id"
+          />
+          <button onclick="abrirModalPesquisa()">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Modal Pesquisa ID -->
+      <section class="modal-overlay" id="overlay">
+        <div class="modal-default">
+          <div class="modal-header">
+            <h2>Tarefas Encontradas</h2>
+
+            <a onclick="fecharModal()" class="close-modal">x</a>
+          </div>
+          <div class="modal-body">
+            <div id="atividade-escolhida"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal Apagar -->
+      <section class="modal-overlay" id="overlay-delete">
+        <div class="modal-default">
+          <div class="modal-header">
+            <h2>Apagar Tarefa</h2>
+            <a onclick="fecharModalDelete()" class="close-modal">x</a>
+          </div>
+          <div class="modal-body-delete">
+            <p>Deseja apagar essa tarefa?</p>
+            <div class="btns-delete">
+              <button
+                class="btn-delete-no btn-delete"
+                onclick="fecharModalDelete()"
+              >
+                Não
+              </button>
+              <button
+                class="btn-delete-yes btn-delete"
+              >
+                Sim
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Conteudo -->
+      <div class="conteudo">
+        <div class="conteudo-header">
+          <input
+            type="text"
+            name="novaTarefa"
+            id="novaTarefa"
+            placeholder="Adicione uma nova tarefa"
+          />
+          <button onclick="createAtividade()" id="adcTarefa">Adicionar</button>
+        </div>
+        <div class="Lista-tarefas" id="lista-tarefas"></div>
+      </div>
+    </main>
+
+    <script src="./assets/script.js"></script>
+  </body>
+</html>
