@@ -6,6 +6,7 @@
 }
 body {
   background-color: #0984e3;
+  position: relative;
 }
 
 header {
@@ -120,10 +121,11 @@ main {
   color: #fff;
 }
 
-#lista-tarefas-li {
+#lista-tarefas-ul {
   list-style: none;
+  position: relative;
 }
-#lista-tarefas-li li {
+#lista-tarefas-ul li {
   padding: 20px;
   border-radius: 15px;
   background-color: #e9e4e4;
@@ -133,6 +135,14 @@ main {
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+.span-id{
+  margin-right: 10px;
+  
+}
+
+.textoTarefa{
+  padding: 5px;
 }
 
 .btnEditar,
@@ -154,7 +164,7 @@ main {
 
 /* Modal */
 
-.modal-overlay{
+.modal-overlay {
   background-color: #00000050;
   width: 100vw;
   height: 100vh;
@@ -179,83 +189,101 @@ main {
   overflow: hidden;
 }
 
-.modal-header{
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  background-image: radial-gradient(
+    farthest-corner at 40px 40px,
+    #50c5ee 60%,
+    #0984e3 100%
+  );
+  padding: 1rem;
+  align-items: center;
+}
+
+.close-modal {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.5rem;
+  transform: scale(0.8);
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  transform: scale(1.1);
+}
+
+.modal-body {
+  padding: 0.5rem 1rem;
+}
+
+footer {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #50c5ee;
+  box-sizing: border-box;
+  margin-top: 20px;
+  position: fixed;
+  bottom: 0;
+}
+footer a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 600;
+}
+
+footer a:hover {
+  color: #000;
+}
+
+footer p {
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (min-width: 300px) and (max-width: 600px) {
+  .conteudo {
+    width: 50%;
+    max-width: 200px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .conteudo-header input {
+    width: 100px;
+    padding: 15px;
+    font-size: 1rem;
+    margin-right: 10px;
+  }
+
+  .conteudo-header button {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+
+  #lista-tarefas-ul {
     display: flex;
     justify-content: space-between;
-    background-image: radial-gradient(
-      farthest-corner at 40px 40px,
-      #50c5ee 60%,
-      #0984e3 100%
-    );
-    padding: 1rem;
+  }
+
+  #lista-tarefas-ul li {
+    padding: 15px;
+    font-size: 1rem;
     align-items: center;
-}
+    width: 225px;
+    flex-wrap: wrap;
+  }
 
-.close-modal{
-    text-decoration: none;
-    color: #000;
-    font-size: 1.5rem;
-    transform: scale(0.8);
-    transition: 0.3s ease-in-out;
+  .btnEditar,
+  .btnApagar {
+    width: 20px;
+    height: 20px;
     cursor: pointer;
-}
-
-.close-modal:hover{
-    transform: scale(1.1);
-  
-}
-  
-.modal-body{
-    padding: .5rem 1rem;
-  
-}
-
-/* Modal Delete */
-
-.modal-body-delete{
-  display: flex;
-  flex-wrap: wrap;
-}
-.modal-body-delete p{
-  width: 100%;
-  padding: 2rem;
-  text-align: center;
-  font-size: 1.5rem;
-}
-
-.btns-delete{
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-
-}
-
-.btn-delete{
-  background-color: transparent;
-  padding: .5rem;
-  font-size: 1.2rem;
-  border-radius: .5rem;
-  width: 30%;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.btn-delete-no{
-  color: #ff0000;
-  border: solid 1px #ff0000;
-}
-
-.btn-delete-no:hover{
-  background-color: #ff0000;
-  color: #fff;
-}
-
-.btn-delete-yes{
-  color: #00b309;
-  border: solid 1px #00b309;
-}
-
-.btn-delete-yes:hover{
-  background-color: #00b309;
-  color: #fff;
+  }
 }

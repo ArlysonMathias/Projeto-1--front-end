@@ -1,8 +1,6 @@
 const baseURL = "http://localhost:3000/atividades";
 
-
 async function findAllAtividades() {
-   
   const response = await fetch(`${baseURL}/todas-atividades`);
 
   const atividades = await response.json();
@@ -12,7 +10,7 @@ async function findAllAtividades() {
       "beforeend",
       `
     <div class="lista-tarefas">
-      <ul id="lista-tarefas-li">
+      <ul id="lista-tarefas-ul">
           <li>
             <span class="span-id">${atividades.id}</span>
             <span class="textoTarefa">${atividades.atividade}</span>
@@ -25,20 +23,37 @@ async function findAllAtividades() {
               </button>
             </div>
           </li>
-        </ul>
+      </ul>
     </div>   
        `
     );
   });
 }
 
-findAllAtividades();
+async function abrirModalPesquisa() {
+  const id = document.querySelector("#pesquisar-id").value;
+  let confirmeId = 0;
+  console.log(id);
 
-function abrirModalPesquisa() {
-  document.querySelector(".modal-overlay").style.display = "flex";
+  const response = await fetch(`${baseURL}/todas-atividades`);
 
-  //chama a função de pesquisa por ID
-  findByIdAtividade();
+  const atividades = await response.json();
+
+  atividades.forEach(function (index) {
+    if (index.id == id) {
+      confirmeId++;
+    }
+  });
+
+  if (confirmeId < 1) {
+    alert("Id não encontrado");
+  } else {
+    document.querySelector(".modal-overlay").style.display = "flex";
+    //chama a função de pesquisa por ID
+    findByIdAtividade();
+  }
+
+  document.getElementById("pesquisar-id").value = "";
 }
 
 function fecharModal() {
@@ -56,7 +71,7 @@ async function findByIdAtividade() {
 
   atividadeEscolhida.innerHTML = `
     <div class="lista-tarefas">
-        <ul id="lista-tarefas-li">
+        <ul id="lista-tarefas-ul">
             <li>
                 <span class="textoTarefa">${atividades.atividade}</span>
                 <div>
@@ -71,81 +86,8 @@ async function findByIdAtividade() {
       </ul>
   </div>   
     `;
+
+  document.getElementById("pesquisar-id").value = "";
 }
 
-async function createAtividade() {
-  const atividade = document.querySelector("#novaTarefa").value;
-
-  const tarefa = { atividade };
-
-  const response = await fetch(`${baseURL}/create`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    mode: "cors",
-    body: JSON.stringify(tarefa),
-  });
-
-  const novaTarefa = await response.json();
-
-  const html = `
-    <div class="lista-tarefas">
-        <ul id="lista-tarefas-li">
-            <li>
-            <span class="span-id">${novaTarefa.id}</span>
-                <span class="textoTarefa">${novaTarefa.atividade}</span>
-                <div>
-                <button class="btnEditar">
-                    <i class="fa-solid fa-pencil"></i>
-                </button>
-                <button  onclick="abrirModalDelete(${novaTarefa.id})" class="btnApagar">
-                    <i class="fa-solid fa-trash-can"></i>
-                </button>
-                </div>
-            </li>
-            </ul>
-        </div> `;
-
-  document
-    .querySelector("#lista-tarefas")
-    .insertAdjacentHTML("beforeend", html);
-
-}
-
-function abrirModalDelete(id) {
-  document.querySelector("#overlay-delete").style.display = "flex";
-
-  
-  
-}
-
-function fecharModalDelete(id) {
-  document.querySelector("#overlay-delete").style.display = "none";
-  const btnSim = document.querySelector(".btn-delete-yes");
-
-  btnSim.addEventListener("click", function () {
-    deleteTarefa(id);
-    
-  });
-
-}
-
-async function deleteTarefa(id) {
-  const response = await fetch(`${baseURL}/delete/${id}`, {
-    method: "delete",
-    // headers: {
-    //   "Content-Type": "application/json",
-    // },
-    mode: "cors",
-  });
-
-//   const result = await response.json();
-
-   document.getElementById("lista-tarefas").innerHTML = "";
-
-  fecharModalDelete();
-  findAllAtividades();
-}
-
-
+findAllAtividades();

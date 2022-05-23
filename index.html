@@ -9,7 +9,7 @@
       crossorigin="anonymous"
     ></script>
     <link rel="stylesheet" href="./assets/style.css" />
-    <title>Projeto 1</title>
+    <title>To-do-List</title>
   </head>
   <body>
     <header>
@@ -48,33 +48,6 @@
           </div>
         </div>
       </section>
-
-      <!-- Modal Apagar -->
-      <section class="modal-overlay" id="overlay-delete">
-        <div class="modal-default">
-          <div class="modal-header">
-            <h2>Apagar Tarefa</h2>
-            <a onclick="fecharModalDelete()" class="close-modal">x</a>
-          </div>
-          <div class="modal-body-delete">
-            <p>Deseja apagar essa tarefa?</p>
-            <div class="btns-delete">
-              <button
-                class="btn-delete-no btn-delete"
-                onclick="fecharModalDelete()"
-              >
-                Não
-              </button>
-              <button
-                class="btn-delete-yes btn-delete"
-              >
-                Sim
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- Conteudo -->
       <div class="conteudo">
         <div class="conteudo-header">
@@ -84,11 +57,18 @@
             id="novaTarefa"
             placeholder="Adicione uma nova tarefa"
           />
-          <button onclick="createAtividade()" id="adcTarefa">Adicionar</button>
+          <button id="adcTarefa">Adicionar</button>
         </div>
         <div class="Lista-tarefas" id="lista-tarefas"></div>
       </div>
     </main>
+
+    <footer>
+      <p>
+        Desenvolvidos para fins educativos por
+        <a href="https://github.com/ArlysonMathias"> Arlyson Mathias</a>
+      </p>
+    </footer>
 
     <script src="./assets/script.js"></script>
   </body>
